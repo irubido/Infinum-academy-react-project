@@ -1,0 +1,11 @@
+{
+  "session": {
+      "token": "3zE9DYLabN93eCUaH5gHeHhm",
+      "user": {
+          "id": 93,
+          "email": "ivan.horvat@example.com",
+          "first_name": "Ivan",
+          "last_name": "Horvat"
+      }
+  }
+}
