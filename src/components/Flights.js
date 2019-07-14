@@ -44,18 +44,6 @@ render() {
               <p>*** | {x.no_of_seats - x.no_of_booked_seats} tickets available</p>
               <p>Price <span className="price">{x.current_price}$</span></p>
             </div>
-          
-
-          {/* {x.name}{x.id}
-            Price: {x.base_price}
-            Company id: {x.company_id}
-            Company name: {x.company_name}
-            Current price: {x.current_price}
-            Flys at: {(x.flys_at)}
-            Lands at: {(x.lands_at).substring(11,16)}
-            Seats: {x.no_of_seats}
-            Booked seats: {x.no_of_booked_seats}
-            Free seats: {x.no_of_seats - x.no_of_booked_seats} */}
           </div>
           
         ))}

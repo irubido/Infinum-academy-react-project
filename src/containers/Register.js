@@ -6,7 +6,7 @@ function Register() {
       <h1>Register</h1>
       <form>
         <div className="input-form">
-          <input placeholder="Full name"></input>
+          <input  placeholder="Full name"></input>
         </div>
         <div>
           <input placeholder="Email"></input>
