@@ -1,42 +1,37 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect} from 'react';
+import { observer } from 'mobx-react';
+import { appState } from '../state/AppState';
 
-class Flights extends Component {
-state = {
-    items: [],
-    isLoaded: false,
-  }
-componentDidMount(){
-  fetch('https://flighter-hw7.herokuapp.com/api/flights', {
-    headers: {
-      'Authorization': '3zE9DYLabN93eCUaH5gHeHhm',
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-      }
-  })
-    .then(res => res.json())
-    .then(json => {
-        
-        this.setState({
-         isLoaded: true,
-         items: json.flights,
-       })
-    });
-}
-render() {
-  if (!this.state.isLoaded) {
-    return <div className="results">Loading...</div>
-  }else{
+const Flights = () => {
+  const[item, setItem] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        const res = await fetch('https://flighter-hw7.herokuapp.com/api/flights', {
+          method: "GET",
+          headers: {
+            "Authorization": `${(localStorage.getItem('token')).slice(1, -1)}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+            },
+        });
+        const data = await res.json();
+        setItem(data.flights);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="flights-container">
     <div className="results">RESULTS</div>
     <div className="flights">
-        {this.state.items.filter(x => x.no_of_seats>x.no_of_booked_seats).map(x => (
-          <div className="flight-item">
+        {item.filter(x => x.no_of_seats>x.no_of_booked_seats).map(x => (
+          <div className="flight-item" key={x.id}>
             <div className="threedots">
               <div><strong>...</strong></div>
             </div>
             <div className="image">
-              <img src="https://source.unsplash.com/1600x900/?airplane,flight" height="200px" width="100%"></img>
+              <img src="https://source.unsplash.com/1600x900/?airplane,flight" alt="airplane" height="200px" width="100%"></img>
             </div>
             <div className="flight-summary">
               <h4>Departs at {(x.flys_at).substring(11,16)}</h4>
@@ -50,7 +45,7 @@ render() {
     </div>
     </div>
   );
+
 }
-}
-}
+
 export default Flights;
