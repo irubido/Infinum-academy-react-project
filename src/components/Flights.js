@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import styles from './Flights.module.css';
 import { observer } from 'mobx-react';
 import { appState } from '../state/AppState';
 
@@ -16,28 +17,30 @@ const Flights = () => {
             },
         });
         const data = await res.json();
+        // appState.flights = await res.json();
+        // console.log(appState.flights);
         setItem(data.flights);
     };
     fetchData();
   }, []);
 
   return (
-    <div className="flights-container">
-    <div className="results">RESULTS</div>
-    <div className="flights">
+    <div className={styles.flightscontainer}>
+    <div className={styles.results}>RESULTS</div>
+    <div className={styles.flights}>
         {item.filter(x => x.no_of_seats>x.no_of_booked_seats).map(x => (
-          <div className="flight-item" key={x.id}>
-            <div className="threedots">
+          <div className={styles.flightitem} key={x.id}>
+            <div className={styles.threedots}>
               <div><strong>...</strong></div>
             </div>
-            <div className="image">
+            <div className={styles.image}>
               <img src="https://source.unsplash.com/1600x900/?airplane,flight" alt="airplane" height="200px" width="100%"></img>
             </div>
-            <div className="flight-summary">
+            <div className={styles.flightsummary}>
               <h4>Departs at {(x.flys_at).substring(11,16)}</h4>
               <p>{x.company_name}</p>
               <p>*** | {x.no_of_seats - x.no_of_booked_seats} tickets available</p>
-              <p>Price <span className="price">{x.current_price}$</span></p>
+              <p>Price <span className={styles.price}>{x.current_price}$</span></p>
             </div>
           </div>
           
@@ -48,4 +51,4 @@ const Flights = () => {
 
 }
 
-export default Flights;
+export default observer(Flights);

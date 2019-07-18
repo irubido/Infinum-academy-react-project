@@ -1,80 +1,12 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
-// import { useAsync } from 'react-use';
-  
-  // function apiCall() {
-    // return fetch('https://flighter-hw7.herokuapp.com/api/session', {
-    //   method: "POST",
-    //   headers: {
-    //     "Accept": "application/json",
-    //     "Content-Type": "application/json"
-    //     },
-    //   body: JSON.stringify({
-    //     "session": {
-    //       "email": "ivan.horvat@example.com",
-    //       "password": "kadulja"
-    //     }
-    //   })
-    // })
-  //     .then((response) => response.json())
-      
-  // }
-  // const data = useAsync(apiCall);
-  // console.log(data);
-
-  // const x = useFetch('https://flighter-hw7.herokuapp.com/api/session', {
-  // method: "POST",
-  // headers: {
-  //   "Accept": "application/json",
-  //   "Content-Type": "application/json"
-  //   },
-  // body: JSON.stringify({
-  //   "session": {
-  //     "email": "ivan.horvat@example.com",
-  //     "password": "kadulja"
-  //   }
-  // })
-  // });
-  // console.log(x);
-
-
-  // function show() {
-  //   console.log(values.email, values.password);
-  // }
-
-  // bez fukcije
-  // const [token, setToken] = useState('');
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //       const res = await fetch('https://flighter-hw7.herokuapp.com/api/session', {
-  //         method: "POST",
-  //         headers: {
-  //           "Accept": "application/json",
-  //           "Content-Type": "application/json"
-  //           },
-  //         body: JSON.stringify({
-  //           "session": {
-  //             "email": "ivan.horvat@example.com",
-  //             "password": "kadulja"
-  //           }
-  //         })
-  //       });
-  //       const data = await res.json();
-  //       setToken(data.session.token);
-  //       console.log(data.session.token);
-  //   };
-  //   fetchData();
-  // }, []);
-
+import styles from './Login.module.css';
   const Login = () => {
-  // const { values, handleChange, handleSubmit } = useForm(fetchData);
-  
   
   const [token, setToken] = useLocalStorage('token','');
   const [valueEmail, setValueEmail] = useState('');
   const [valuePassword, setValuePassword] = useState('');
-  
   
   const fetchData = async (valueEmail,valuePassword) => {
     const res = await fetch('https://flighter-hw7.herokuapp.com/api/session', {
@@ -107,7 +39,7 @@ import { useLocalStorage } from 'react-use';
   }
   
   return(
-    <div className="login-container">
+    <div className={styles.logincontainer}>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-form">
@@ -120,9 +52,9 @@ import { useLocalStorage } from 'react-use';
           <input type="checkbox"></input>
           Remember me
         </div>
-        <button className="login-button">Login</button>
+        <button className={styles.loginbutton}>Login</button>
       </form>
-      <div className="toregister">
+      <div className={styles.toregister}>
         <p>Don't have an account?</p>
         <p><Link to="/register">Register here</Link></p>
       </div>

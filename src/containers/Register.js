@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import styles from './Login.module.css';
 function Register() {
   
   const [valueEmail, setValueEmail] = useState('');
@@ -36,7 +36,7 @@ function Register() {
   }
 
   return(
-    <div className="register-container">
+    <div className={styles.logincontainer}>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-form">
@@ -51,7 +51,7 @@ function Register() {
         <div>
         <input type="password" name="password2" onChange={e => setValuePassword2(e.target.value)} value={valuePassword2} placeholder="Confirm Password" required ></input>
         </div>
-        <button className="login-button">Register</button>
+        <button className={styles.loginbutton}>Register</button>
       </form>
       
       

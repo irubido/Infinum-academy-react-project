@@ -9,103 +9,11 @@ a{
 }
 h1{
   margin: 0px;
-}
-.header{
-  background: rgb(3, 105, 249);
-  padding: 10px 30px 30px 30px;
-  display:flex;
-  justify-content: flex-end;
-}
-.header button{
-  margin: 5px;
-  padding: 3px 0px;
-  width: 70px;
-  border: none;
-  text-align: center;
-  border-radius: 5px;
-  background: white;
-}
-.header button:hover{
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.5);
-}
-.search-container{
-  background: rgb(240, 240, 240);
-}
-h1{
   text-align: center;
   padding: 40px;
   font-size: 30px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(25, 76, 191);
 }
-.search{
-  display: grid;
-  grid-gap: 3px;
-  grid-template-columns: repeat(4, 1fr);
-  
-  padding:0 20px 20px 20px;
-}
-.search-item{
-  background: white;
-  padding: 20px 10px;
-}
-.search-button{
-  background: rgb(3, 105, 249);
-  color: white;
-  padding: 20px 10px;
-  text-align: center;
-}
-.flights-container{
-  padding:0 20px;
-}
-.results{
-  padding: 20px 0;
-  font-size: 20px;
-}
-.flights{
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-}
-.flight-item{
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
-}
-.threedots{
-  display:flex;
-  justify-content: flex-end;
-}
-.flight-summary{
-  padding:2px 10px;
-}
-.price{
-  font-weight: bold;
-  color: rgb(3, 105, 249);
-}
-.login-container, .register-container{
-  text-align: center;
-}
-input{
-  margin:20px;
-  border: none;
-  border-bottom: 2px solid rgb(233, 233, 233);
-}
-.login-button{
-  margin: 5px;
-  width: 150px;
-  height: 35px;
-  border: none;
-  text-align: center;
-  border-radius: 3px;
-  background: rgb(104, 165, 251);
-  color: white;
-  font-size: 16px;
-}
-.login-button:hover{
-  background: rgb(3, 105, 249);
-}
-.toregister{
-  font-weight: bold;
-}
-.toregister a{
-  color: rgb(3, 105, 249);
-}
+
+
