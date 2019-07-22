@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import { observer } from 'mobx-react';
 import styles from './Login.module.css';
+//import { appState } from '../state/AppState';
 function Register() {
   
   const [valueEmail, setValueEmail] = useState('');
@@ -58,4 +60,4 @@ function Register() {
     </div>
   )
 }
-export default Register;
+export default observer(Register);

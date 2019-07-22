@@ -1,0 +1,18 @@
+.gridContainer{
+  background: grey;
+}
+.booking{
+  margin: 5px;
+  margin-left: 40px;
+  width: 150px;
+  height: 35px;
+  border: none;
+  text-align: center;
+  border-radius: 3px;
+  background: rgb(104, 165, 251);
+  color: white;
+  font-size: 16px;
+}
+.booking:hover{
+  background: rgb(3, 105, 249);
+}

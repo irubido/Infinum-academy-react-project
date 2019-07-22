@@ -1,9 +1,10 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import styles from './Search.module.css';
 
 function Search() {
   return(
-    <div className={styles.searccontainer}>
+    <div className={styles.searchcontainer}>
       <h1>Find best flight for you and your friends!</h1>
       <div className={styles.search}>
         <div className={styles.searchitem}>01.FEB 2019</div>
@@ -14,4 +15,4 @@ function Search() {
     </div>
   )
 }
-export default Search;
+export default observer(Search);
