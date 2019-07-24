@@ -3,39 +3,19 @@ import { observer } from 'mobx-react';
 import { AppContext } from '../state/AppContext';
 import { toJS } from 'mobx';
 import styles from './BookingModal.module.css';
+import { postBooking } from '../services/postBooking';
 
  function BookingModal(props) {
   const { appState } = React.useContext(AppContext);
-
-
-  const fetchData = async (valueSeats) => {
-    const res = await fetch('https://flighter-hw7.herokuapp.com/api/bookings', {
-      method: "POST",
-      headers: {
-        "Authorization": `${(localStorage.getItem('token')) ? (localStorage.getItem('token')).slice(1, -1) : 'abc'}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-        },
-      body: JSON.stringify({
-        "booking": {
-          "no_of_seats": `${valueSeats}`,
-          "flight_id": `${props.match.params.id}`
-        }
-      })
-    });
-    appState.bookingResponse = await res.json();
-    const x = toJS(appState.bookingResponse);
-    console.log(x);
-  };
 
    function closeModal() {
     props.history.push(`/flightdetail/${props.match.params.id}`);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log(appState.booking);
-    fetchData(appState.booking);
+    appState.bookingResponse = await postBooking('bookings', appState.booking, props.match.params.id);
+    console.log(toJS(appState.bookingResponse));
   }
   function onInputChange(e) {
     appState.booking = e.target.value;

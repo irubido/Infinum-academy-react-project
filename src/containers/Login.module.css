@@ -27,3 +27,7 @@ input{
 .toregister a{
   color: rgb(3, 105, 249);
 }
+p{
+  color: rgb(3, 105, 249);
+  margin-top:-10px;
+}

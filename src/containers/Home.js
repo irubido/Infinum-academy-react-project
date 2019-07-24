@@ -5,26 +5,21 @@ import Header from '../components/Header';
 import Search from '../components/Search';
 import Flights from '../components/Flights';
 import { AppContext } from '../state/AppContext';
+import { getFlights } from '../services/getFlights';
 
 function Home() {
   const { appState } = React.useContext(AppContext);
-
-  const fetchData = async () => {
-    const res = await fetch('https://flighter-hw7.herokuapp.com/api/flights', {
-      method: "GET",
-      headers: {
-        "Authorization": `${(localStorage.getItem('token')) ? (localStorage.getItem('token')).slice(1, -1) : 'abc'}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-        },
-    });
-    appState.flights = await res.json();
-  }
-
+  //useAsync(getFlights.bind(null, model, appState));
+  
   useEffect(() => {
-    fetchData();
-  }, []);
-
+    if(localStorage.getItem('token')){
+      const run = async () => {
+        appState.flights = await getFlights('flights');
+      }
+      run();
+    }
+   }, []);
+  
 return (
   <div className="wrapper">
           <Header />

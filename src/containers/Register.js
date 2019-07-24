@@ -1,59 +1,55 @@
 import React, {useState} from 'react';
 import { observer } from 'mobx-react';
 import styles from './Login.module.css';
+import { postRegister } from '../services/postRegister';
+import useForm from 'react-hook-form';
 //import { appState } from '../state/AppState';
 function Register() {
+  const { register, handleSubmit, errors } = useForm();
+  // const [valueEmail, setValueEmail] = useState('');
+  // const [fullName, setFullName] = useState('');
+  // const [valuePassword, setValuePassword] = useState('');
+  // const [valuePassword2, setValuePassword2] = useState('');
   
-  const [valueEmail, setValueEmail] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [valuePassword, setValuePassword] = useState('');
-  const [valuePassword2, setValuePassword2] = useState('');
-  
-  const fetchData = async (email, fullName, password) => {
-    const fullNameArray = fullName.split(' ')
-    const res = await fetch('https://flighter-hw7.herokuapp.com/api/users', {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-        },
-      body: JSON.stringify({
-        "user": {
-          "email": `${email}`,
-          "first_name": `${fullNameArray[0]}`,
-          "last_name": `${fullNameArray[1]}`,
-          "password": `${password}`
-        }
-      })
-    });
-    const data = await res.json();
+  async function onRegister(submitData) {
+    console.log(submitData);
+    const data = await postRegister('users', submitData.email, submitData.fullName, submitData.password);
     console.log(data);
-    };
-  
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(valueEmail,fullName, valuePassword);
-    fetchData(valueEmail,fullName,valuePassword);
   }
 
   return(
     <div className={styles.logincontainer}>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onRegister)}>
         <div className="input-form">
-        <input type="text" name="fullName" onChange={e => setFullName(e.target.value)} value={fullName} placeholder="Full name" required ></input>
+        <input type="text" name="fullName" ref={register({
+          required: 'Full name required!',
+        })} placeholder="Full name" />
+        <div><p>{errors['fullName'] && errors['fullName'].message}</p></div>
         </div>
         <div>
-        <input type="email" name="email" onChange={e => setValueEmail(e.target.value)} value={valueEmail} placeholder="Email" required ></input>
+        <input type="email" name="email" ref={register({
+          required: 'Email required!',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,10}$/i,
+            message: 'This is not an email format!',
+          },
+        })}  placeholder="Email" />
         </div>
+        <div><p>{errors['email'] && errors['email'].message}</p></div>
         <div>
-        <input type="password" name="password" onChange={e => setValuePassword(e.target.value)} value={valuePassword} placeholder="Password" required ></input>
+        <input type="password" name="password" ref={register({
+          validate: (value) => value.length > 3 || 'Use a stronger password!',
+        })} placeholder="Password" />
         </div>
+        <div><p>{errors['password'] && errors['password'].message}</p></div>
         <div>
-        <input type="password" name="password2" onChange={e => setValuePassword2(e.target.value)} value={valuePassword2} placeholder="Confirm Password" required ></input>
+        <input type="password" name="password2" ref={register({
+          validate: (value) => value.length > 3 || 'Use a stronger password!',
+        })} placeholder="Confirm Password" />
         </div>
-        <button className={styles.loginbutton}>Register</button>
+        <div><p>{errors['password2'] && errors['password2'].message}</p></div>
+        <button type="submit" className={styles.loginbutton}>Register</button>
       </form>
       
       
