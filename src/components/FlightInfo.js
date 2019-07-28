@@ -6,7 +6,7 @@ import styles from './FlightInfo.module.css';
 
 const FlightInfo = ({info}) => {
   //console.log(flights.flights);
-  console.log(info);
+  
     return (
       <div className={styles.wrapper}>
         <h1>{info.name}</h1>

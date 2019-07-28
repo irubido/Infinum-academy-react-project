@@ -5,11 +5,8 @@ import { postRegister } from '../services/postRegister';
 import useForm from 'react-hook-form';
 //import { appState } from '../state/AppState';
 function Register() {
+  
   const { register, handleSubmit, errors } = useForm();
-  // const [valueEmail, setValueEmail] = useState('');
-  // const [fullName, setFullName] = useState('');
-  // const [valuePassword, setValuePassword] = useState('');
-  // const [valuePassword2, setValuePassword2] = useState('');
   
   async function onRegister(submitData) {
     console.log(submitData);
@@ -51,8 +48,6 @@ function Register() {
         <div><p>{errors['password2'] && errors['password2'].message}</p></div>
         <button type="submit" className={styles.loginbutton}>Register</button>
       </form>
-      
-      
     </div>
   )
 }

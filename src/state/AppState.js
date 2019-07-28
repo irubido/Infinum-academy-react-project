@@ -6,6 +6,7 @@ class AppState{
   token = '';
   booking = [];
   bookingResponse = [];
+  userData = [];
 }
 
 decorate(AppState, {
@@ -14,6 +15,7 @@ decorate(AppState, {
   token: observable,
   booking: observable,
   bookingResponse: observable,
+  userData: observable,
 })
 
 export const appState = new AppState();

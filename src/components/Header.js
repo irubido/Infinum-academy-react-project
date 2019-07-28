@@ -5,11 +5,11 @@ import styles from './Header.module.css';
 
 function Header() {
   
-  if (localStorage.getItem('token')){
+  if (localStorage.getItem('token') && localStorage.getItem('token').length > 3){
     return(
       <div className={styles.header}>
-        <div className={styles.name}>Hi, {localStorage.getItem('name').slice(1, -1)}!</div>
-        <Link to="/register"><button>Register</button></Link>
+        <Link to={`/profile/${localStorage.getItem('profileId')}`}><div className={styles.name}>Hi, {localStorage.getItem('name').slice(1, -1)}!</div></Link>
+        <button>Logout</button>
       </div>
     );
   }else{

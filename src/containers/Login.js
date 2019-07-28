@@ -12,12 +12,14 @@ import useForm from 'react-hook-form';
     const { appState } = React.useContext(AppContext);
     const [token, setToken] = useLocalStorage('token','');
     const [name, setName] = useLocalStorage('name','');
+    const [profileId, setProfileId] = useLocalStorage('profileId','');
   
     async function onLogin(submitData) {
       const data = await postLogin('session', submitData.email, submitData.password);
       console.log(data.session.token);
       setToken(data.session.token);
       setName(data.session.user.first_name);
+      setProfileId(data.session.user.id);
     }
   
     return(
@@ -41,7 +43,6 @@ import useForm from 'react-hook-form';
           <p><Link to="/register">Register here</Link></p>
         </div>
       </div>
-
     )
   }
 export default observer(Login);

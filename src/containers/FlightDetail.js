@@ -5,19 +5,21 @@ import Header from '../components/Header';
 import { AppContext } from '../state/AppContext';
 import styles from './FlightDetail.module.css';
 import FlightInfo from '../components/FlightInfo';
-import { getFlights } from '../services/getFlights';
+import { getData } from '../services/getData';
 
 function FlightDetail( props ){
   const { appState } = React.useContext(AppContext);
 
   useEffect(() => {
       const run = async () => {
-        appState.flight = await getFlights(`flights/${props.match.params.id}`);
+        appState.flight = await getData(`flights/${props.match.params.id}`);
       }
       run();
    }, []);
 
   const details = toJS(appState.flight.flight);
+   //console.log(appState.flight);
+   console.log(details);
 
   function openModal(){
       props.history.push(`/flightdetail/${props.match.params.id}/bookingmodal`);

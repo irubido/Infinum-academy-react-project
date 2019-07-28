@@ -7,6 +7,8 @@ import Register from './containers/Register';
 import './style.css';
 import FlightDetail from './containers/FlightDetail';
 import BookingModal from './containers/BookingModal';
+import Profile from './containers/Profile';
+import EditProfile from './containers/EditProfile';
 
 function App() {
   return(
@@ -16,6 +18,8 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/flightdetail/:id" component={FlightDetail} />
         <Route path="/flightdetail/:id/bookingmodal" component={BookingModal} />
+        <Route path="/profile/:id" component={Profile} />
+        <Route path="/profile/:id/edit" component={EditProfile} />
     </BrowserRouter>
   )
 }

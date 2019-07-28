@@ -5,16 +5,15 @@ import Header from '../components/Header';
 import Search from '../components/Search';
 import Flights from '../components/Flights';
 import { AppContext } from '../state/AppContext';
-import { getFlights } from '../services/getFlights';
+import { getData } from '../services/getData';
 
 function Home() {
   const { appState } = React.useContext(AppContext);
-  //useAsync(getFlights.bind(null, model, appState));
   
   useEffect(() => {
     if(localStorage.getItem('token')){
       const run = async () => {
-        appState.flights = await getFlights('flights');
+        appState.flights = await getData('flights');
       }
       run();
     }

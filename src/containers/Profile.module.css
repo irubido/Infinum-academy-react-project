@@ -1,0 +1,42 @@
+.wrapper{
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(240, 240, 240);
+  height: 800px;
+}
+.profile{
+background: white;
+width: 80%;
+margin: 30px;
+display: flex;
+box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.2);
+border-radius: 3px;
+
+
+}
+.profileImg{
+  width: 200px;
+  height: 200px;
+  margin: 25px;
+  padding: 0 30px 0 0;
+}
+.edit{  
+  width: 150px;
+  height: 35px;
+  border: none;
+  text-align: center;
+  border-radius: 3px;
+  background: rgb(104, 165, 251);
+  color: white;
+  font-size: 16px;
+  margin-top:90px;
+}
+.edit:hover{
+  background: rgb(3, 105, 249);
+}
+h2{
+  font-size: 27px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(25, 76, 191);
+}
