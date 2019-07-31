@@ -1,10 +1,11 @@
 export function editUser(model, email, fName, password, imgUrl) {
   const fNameArray = fName.split(' ');
+  
   return(
     fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
       method: "PUT",
       headers: {
-        "Authorization": `${(localStorage.getItem('token')) ? (localStorage.getItem('token')).slice(1, -1) : 'abc'}`,
+        "Authorization": `${localStorage.getItem('token')}`,
         "Accept": "application/json",
         "Content-Type": "application/json"
         },

@@ -7,11 +7,12 @@ import { postLogin } from '../services/postLogin';
 import { AppContext } from '../state/AppContext';
 import useForm from 'react-hook-form';
 
-  const Login = () => {
+  const Login = (props) => {
     const { register, handleSubmit, errors } = useForm();
     const { appState } = React.useContext(AppContext);
-    const [token, setToken] = useLocalStorage('token','');
-    const [name, setName] = useLocalStorage('name','');
+    // const [token, setToken] = useLocalStorage('token','');
+    const [token, setToken] = useState('');
+    const [name, setName] = useState('');
     const [profileId, setProfileId] = useLocalStorage('profileId','');
   
     async function onLogin(submitData) {
@@ -20,6 +21,10 @@ import useForm from 'react-hook-form';
       setToken(data.session.token);
       setName(data.session.user.first_name);
       setProfileId(data.session.user.id);
+      localStorage.setItem('token', data.session.token);
+      localStorage.setItem('name', data.session.user.first_name);
+      appState.name = data.session.user.first_name;
+      if(data.session.token && data.session.user.first_name){props.history.push("/")};
     }
   
     return(

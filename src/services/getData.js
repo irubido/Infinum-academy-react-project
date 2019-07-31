@@ -4,7 +4,7 @@ export function getData(model) {
     fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {
       method: "GET",
       headers: {
-        "Authorization": `${(localStorage.getItem('token')) ? (localStorage.getItem('token')).slice(1, -1) : 'abc'}`,
+        "Authorization": `${localStorage.getItem('token')}`,
         "Accept": "application/json",
         "Content-Type": "application/json"
         },

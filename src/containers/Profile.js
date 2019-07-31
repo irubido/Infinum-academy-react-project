@@ -9,7 +9,7 @@ import MyBookings from '../components/MyBookings';
 
 function Profile( props ){
   const { appState } = React.useContext(AppContext);
-
+  if(!localStorage.getItem('token'))props.history.push("/");
   useEffect(() => {
       const run = async () => {
         appState.userData = await getData(`users/${props.match.params.id}`);
@@ -43,7 +43,7 @@ function Profile( props ){
     return(
       <Fragment>
       <Header />
-      <div>Loading user details.</div>
+      <div className={styles.profile}><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/><h2>Loading user details.</h2></div>
       </Fragment>
     );
   }

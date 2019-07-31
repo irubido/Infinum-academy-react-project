@@ -24,3 +24,9 @@
   font-weight: bold;
   color: rgb(3, 105, 249);
 }
+a {
+  color: rgb(3, 105, 249);
+}
+a:hover{
+  color: rgb(104, 165, 251);
+}

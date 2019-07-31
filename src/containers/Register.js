@@ -4,14 +4,16 @@ import styles from './Login.module.css';
 import { postRegister } from '../services/postRegister';
 import useForm from 'react-hook-form';
 //import { appState } from '../state/AppState';
-function Register() {
+function Register(props) {
   
   const { register, handleSubmit, errors } = useForm();
   
   async function onRegister(submitData) {
-    console.log(submitData);
+    
     const data = await postRegister('users', submitData.email, submitData.fullName, submitData.password);
     console.log(data);
+    alert(`Your registration was successful! email:${data.user.email} `);
+    if(data.user.email){props.history.push("/login")};
   }
 
   return(

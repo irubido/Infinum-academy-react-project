@@ -1,5 +1,4 @@
 import React, {useCallback, useState} from 'react';
-import { useLocalStorage } from 'react-use';
 import { observer } from 'mobx-react';
 import { AppContext } from '../state/AppContext';
 import { toJS } from 'mobx';
@@ -8,6 +7,7 @@ import { useDropzone } from 'react-dropzone';
 import useForm from 'react-hook-form';
 import { uploadPhoto } from '../services/uploadPhoto';
 import { editUser } from '../services/editUser';
+import { getData } from '../services/getData';
  function EditProfile(props) {
 
   const { appState } = React.useContext(AppContext);
@@ -20,7 +20,6 @@ import { editUser } from '../services/editUser';
 
   const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
-  const [name, setName] = useLocalStorage('name','');
 
   function onDrop(files) {
     setFile(files[0]);
@@ -43,7 +42,9 @@ import { editUser } from '../services/editUser';
     image.imageUrl);
     console.log(newUserData);
     const fNameArray = submitData.fullName.split(' ');
-    newUserData && setName(fNameArray[0]);
+    newUserData && localStorage.setItem('name', fNameArray[0]);
+    appState.userData = await getData(`users/${props.match.params.id}`);
+    appState.name = await fNameArray[0];
   }
   
    return (

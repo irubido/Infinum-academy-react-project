@@ -2,14 +2,23 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import {Link} from 'react-router-dom';
 import styles from './Header.module.css';
+import { appState } from '../state/AppState';
 
-function Header() {
-  
-  if (localStorage.getItem('token') && localStorage.getItem('token').length > 3){
+function Header(props) {
+
+  function logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('profileId');
+    window.location.reload();
+    props.history.push("/");
+  }
+
+  if (localStorage.getItem('token')){
     return(
       <div className={styles.header}>
-        <Link to={`/profile/${localStorage.getItem('profileId')}`}><div className={styles.name}>Hi, {localStorage.getItem('name').slice(1, -1)}!</div></Link>
-        <button>Logout</button>
+        <Link to={`/profile/${localStorage.getItem('profileId')}`}><div className={styles.name}>Hi, {appState.name}!</div></Link>
+        <button onClick={logout}>Logout</button>
       </div>
     );
   }else{

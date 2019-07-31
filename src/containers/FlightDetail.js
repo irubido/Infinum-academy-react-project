@@ -9,7 +9,7 @@ import { getData } from '../services/getData';
 
 function FlightDetail( props ){
   const { appState } = React.useContext(AppContext);
-
+  if(!localStorage.getItem('token'))props.history.push("/");
   useEffect(() => {
       const run = async () => {
         appState.flight = await getData(`flights/${props.match.params.id}`);
