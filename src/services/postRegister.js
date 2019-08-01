@@ -1,4 +1,3 @@
-
 export function postRegister(model, email, fName, password) {
   const fNameArry = fName.split(' ');
   return(

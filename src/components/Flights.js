@@ -1,10 +1,9 @@
 import React from 'react';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import styles from './Flights.module.css';
 import { Link } from 'react-router-dom';
 import { appState } from '../state/AppState';
-
+import formatTime from '../services/formatTime';
 
 const Flights = () => {
     if(appState.filteredFlights){
@@ -23,7 +22,7 @@ const Flights = () => {
                   </div>
                   <div className={styles.flightsummary}>
                     <h4>{x.name}</h4>
-                    <h4>Departs at {(x.flys_at).substring(11,16)}</h4>
+                    <h4>Departs at {formatTime(x.flys_at)}</h4>
                     <p>{x.company_name}</p>
                     <p>*** | {x.no_of_seats - x.no_of_booked_seats} tickets available</p>
                     <p>Price <span className={styles.price}>{x.current_price}$</span></p>

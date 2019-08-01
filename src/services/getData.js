@@ -1,4 +1,3 @@
-
 export function getData(model) {
   return(
     fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {

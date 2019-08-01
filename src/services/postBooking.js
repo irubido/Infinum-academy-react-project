@@ -1,4 +1,3 @@
-
 export function postBooking(model, valueSeats, id) {
   return(
     fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {

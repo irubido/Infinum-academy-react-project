@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 import styles from './Login.module.css';
 import { postRegister } from '../services/postRegister';
 import useForm from 'react-hook-form';
-//import { appState } from '../state/AppState';
 function Register(props) {
   
   const { register, handleSubmit, errors } = useForm();
@@ -11,7 +10,7 @@ function Register(props) {
   async function onRegister(submitData) {
     
     const data = await postRegister('users', submitData.email, submitData.fullName, submitData.password);
-    console.log(data);
+
     alert(`Your registration was successful! email:${data.user.email} `);
     if(data.user.email){props.history.push("/login")};
   }
@@ -42,11 +41,6 @@ function Register(props) {
         })} placeholder="Password" />
         </div>
         <div><p>{errors['password'] && errors['password'].message}</p></div>
-        <div>
-        <input type="password" name="password2" ref={register({
-          validate: (value) => value.length > 3 || 'Use a stronger password!',
-        })} placeholder="Confirm Password" />
-        </div>
         <div><p>{errors['password2'] && errors['password2'].message}</p></div>
         <button type="submit" className={styles.loginbutton}>Register</button>
       </form>

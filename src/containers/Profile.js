@@ -9,11 +9,11 @@ import MyBookings from '../components/MyBookings';
 
 function Profile( props ){
   const { appState } = React.useContext(AppContext);
+
   if(!localStorage.getItem('token'))props.history.push("/");
   useEffect(() => {
       const run = async () => {
         appState.userData = await getData(`users/${props.match.params.id}`);
-      
       }
       run();
    }, []);
@@ -36,14 +36,13 @@ function Profile( props ){
         </div>
       </div>
       <MyBookings booking={details.bookings} />
-      {/* <FlightInfo info={details}/> */}
       </div>
     );
   } else{
     return(
       <Fragment>
       <Header />
-      <div className={styles.profile}><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/><h2>Loading user details.</h2></div>
+      <div className={styles.profile}><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/><h1>Loading user details.</h1></div>
       </Fragment>
     );
   }

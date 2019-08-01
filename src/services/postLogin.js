@@ -1,4 +1,3 @@
-
 export function postLogin(model, email, password) {
   return(
     fetch(`https://flighter-hw7.herokuapp.com/api/${model}`, {

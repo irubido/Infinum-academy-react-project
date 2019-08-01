@@ -1,37 +1,40 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { AppContext } from '../state/AppContext';
-import { toJS } from 'mobx';
 import styles from './BookingModal.module.css';
 import { postBooking } from '../services/postBooking';
+import useForm from 'react-hook-form';
 
  function BookingModal(props) {
   const { appState } = React.useContext(AppContext);
+  const { register, handleSubmit, errors } = useForm();
 
-   function closeModal() {
+  function closeModal() {
     props.history.push(`/flightdetail/${props.match.params.id}`);
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    appState.bookingResponse = await postBooking('bookings', appState.booking, props.match.params.id);
-    console.log(toJS(appState.bookingResponse));
-  }
-  function onInputChange(e) {
-    appState.booking = e.target.value;
+  async function confirmBooking(submitData) {
+    appState.bookingResponse = await postBooking('bookings', submitData.booking, props.match.params.id);
+    if(appState.bookingResponse.booking){
+      alert(`Flight ${appState.bookingResponse.booking.flight.name} successfully booked for ${submitData.booking} seat/s`);
+    }
   }
    return (
-    
       <div className={styles.modalContainer}>
         <div className={styles.modalContent}>
           <h1>Create booking</h1>
+          <form onSubmit={handleSubmit(confirmBooking)}>
           <input 
-          value={appState.booking}
-          type="text"
-          placeholder="How much seats?"
-          onChange={onInputChange}
+            type="text"
+            name="booking"
+            ref={register({
+              validate: (value) => value < 11 || `Can't book more than 10 seats at once`,
+            })}
+            placeholder="How much seats?"
           />
-          <button className={styles.button} onClick={handleSubmit}>Confirm booking</button>
+          <div><p>{errors['booking'] && errors['booking'].message}</p></div>
+          <button className={styles.button} type="submit">Confirm booking</button>
+          </form>
           <button className={styles.button} onClick={closeModal} >Close</button>
         </div>
       </div>

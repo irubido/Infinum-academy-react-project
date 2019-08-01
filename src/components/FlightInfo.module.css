@@ -35,12 +35,19 @@ p span{
 }
 .box7{
   grid-area: box7;
+  margin-top: 20px;
 }
 .box8{
   grid-area: box8;
+  margin-top: 20px;
 }
 .box9{
   grid-area: box9;
+  margin-top: 20px;
+}
+.box10{
+  grid-area: box10;
+  margin-top: 20px;
 }
 .picture{
   grid-area: picture;
