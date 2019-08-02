@@ -1,0 +1,44 @@
+.header{
+  background: rgb(3, 105, 249);
+  padding: 10px 30px 30px 30px;
+  display:flex;
+  justify-content: space-between;
+}
+.home{
+  color: white;
+  font-size: 23px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.links{
+  display:flex;
+}
+.header button{
+  margin: 5px;
+  padding: 3px 0px;
+  width: 70px;
+  height: 25px;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  background: white;
+  margin-top: 10px;
+}
+.header button:hover{
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.5);
+}
+.name{
+  color: white;
+  font-size: 23px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+.name:hover{
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.5);
+}
+.home:hover{
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.5);
+}

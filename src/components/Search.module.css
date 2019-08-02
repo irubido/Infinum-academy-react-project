@@ -1,0 +1,16 @@
+.searchContainer{
+  background: rgb(240, 240, 240);
+}
+.search{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.item{
+  background: white;
+  padding: 20px 10px;
+  text-align: center;
+  width: 40%;
+  font-size: 27px;
+  color: rgb(25, 76, 191);
+}
