@@ -1,7 +1,7 @@
-import { getData } from '../services/getData';
+import { getData } from '.';
 
-export function loadFlights(appState) {
-  return getData('flights')
-    .then((response) => response.flights)
-    .then((flights) => (appState.flights = flights));
-}
+const loadFlights = (appState) => getData('flights')
+  .then((response) => response.flights)
+  .then((flights) => (appState.flights = flights));
+
+export default loadFlights;

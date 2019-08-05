@@ -11,7 +11,7 @@ class AppState{
     if(this.flights){
       return this.flights.filter((flight) =>
       flight.name.toLowerCase().includes(this.flightFilter.toLowerCase()),
-    );   
+    );
     }
   }
 }
